@@ -1,0 +1,30 @@
+# Maintainer: ilostecho404 <ilostecho404@users.noreply.github.com>
+pkgname=hrimos-rime-theme
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Rime application style, window decoration, and color scheme for HrimOS"
+arch=('x86_64')
+url="https://github.com/ilostecho404/HrimOS"
+license=('GPL2')
+depends=('kdecoration' 'kcolorscheme' 'kiconthemes' 'kirigami' 'frameworkintegration'
+         'kcmutils' 'kconfig' 'kguiaddons' 'ki18n' 'kwindowsystem' 'qt6-svg' 'qt6-base')
+makedepends=('extra-cmake-modules' 'qt6-declarative' 'cmake' 'git')
+options=(!debug)
+
+build() {
+    cd "${startdir}/Rime-src"
+    rm -rf build
+    mkdir build
+    cd build
+    cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_QT6=ON \
+        -DBUILD_QT5=OFF
+    make -j$(nproc)
+}
+
+package() {
+    cd "${startdir}/Rime-src/build"
+    make DESTDIR="${pkgdir}" install
+}

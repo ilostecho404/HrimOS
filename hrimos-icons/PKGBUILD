@@ -1,0 +1,21 @@
+# Maintainer: ilostecho404 <ilostecho404@users.noreply.github.com>
+pkgname=hrimos-icons
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="HrimOS Niflheim frost-rune folder icon accent pack (inherits Breeze Dark)"
+arch=('any')
+url="https://github.com/ilostecho404/HrimOS"
+license=('custom')
+depends=('breeze-icons')
+
+package() {
+    local srcdir_theme="${startdir}/HrimOS-Niflheim"
+    if [ ! -d "${srcdir_theme}" ]; then
+        echo "ERROR: expected to find HrimOS-Niflheim/ next to this PKGBUILD" >&2
+        return 1
+    fi
+
+    install -d "${pkgdir}/usr/share/icons/HrimOS-Niflheim"
+    cp -r "${srcdir_theme}/." "${pkgdir}/usr/share/icons/HrimOS-Niflheim/"
+    rm -f "${pkgdir}/usr/share/icons/HrimOS-Niflheim/icon-theme.cache"
+}

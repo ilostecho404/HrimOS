@@ -1,0 +1,11 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Category": "",
+        "Description": "The icy Rime look for HrimOS",
+        "Id": "com.hrimos.rime.desktop",
+        "License": "GPLv2+",
+        "Name": "HrimOS Rime",
+        "Website": "https://github.com/YOURNAME/HrimOS"
+    }
+}

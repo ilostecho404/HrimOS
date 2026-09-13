@@ -1,0 +1,4 @@
+[Icon Theme]
+Name=Hrim Crystalline Frostbite
+Comment=Hrim OS Crystalline Breeze artwork as the primary look, filled out with BreezeX-Frostbite-Dark cursors for full X11/Wayland coverage
+Inherits=hicolor

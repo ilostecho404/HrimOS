@@ -1,0 +1,30 @@
+# Maintainer: ilostecho404 <ilostecho404@users.noreply.github.com>
+pkgname=hrimos-branding
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="HrimOS logo, home icon, and default wallpaper"
+arch=('any')
+url="https://github.com/ilostecho404/HrimOS"
+license=('custom')
+
+package() {
+    local assets="${startdir}/assets"
+    if [ ! -d "${assets}" ]; then
+        echo "ERROR: expected an assets/ folder next to this PKGBUILD" >&2
+        return 1
+    fi
+
+    install -Dm644 "${assets}/logo.png" "${pkgdir}/usr/share/pixmaps/hrimos-logo.png"
+    install -Dm644 "${assets}/home-icon.png" "${pkgdir}/usr/share/icons/hicolor/512x512/apps/hrimos-home.png"
+
+    install -d "${pkgdir}/usr/share/wallpapers/HrimOS/contents/images"
+    install -Dm644 "${assets}/wallpaper.png" "${pkgdir}/usr/share/wallpapers/HrimOS/contents/images/1920x1080.png"
+
+    cat > "${pkgdir}/usr/share/wallpapers/HrimOS/metadata.desktop" <<META
+[Desktop Entry]
+Name=HrimOS
+X-KDE-PluginInfo-Name=HrimOS
+X-KDE-PluginInfo-Author=You
+X-KDE-PluginInfo-License=custom
+META
+}

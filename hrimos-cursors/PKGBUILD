@@ -1,0 +1,36 @@
+# Maintainer: ilostecho404 <ilostecho404@users.noreply.github.com>
+pkgname=hrimos-cursors
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Hrim Crystalline Frostbite cursor theme for HrimOS (custom cursors, with BreezeX Dark used as fallback for unfinished glyphs)"
+arch=('any')
+url="https://github.com/ilostecho404/HrimOS"
+license=('GPL3')
+depends=('hicolor-icon-theme')
+
+package() {
+    local srcdir_theme="${startdir}/Hrim-Crystalline-Frostbite"
+    if [ ! -d "${srcdir_theme}" ]; then
+        echo "ERROR: expected to find Hrim-Crystalline-Frostbite/ next to this PKGBUILD" >&2
+        return 1
+    fi
+
+    install -d "${pkgdir}/usr/share/icons/Hrim-Crystalline-Frostbite"
+    cp -r "${srcdir_theme}/." "${pkgdir}/usr/share/icons/Hrim-Crystalline-Frostbite/"
+
+    install -Dm644 "${startdir}/GPL-3.0.txt" \
+        "${pkgdir}/usr/share/licenses/hrimos-cursors/LICENSE"
+
+    cat > "${pkgdir}/usr/share/icons/Hrim-Crystalline-Frostbite/ATTRIBUTION.md" <<ATTR
+# Hrim Crystalline Frostbite Cursor Theme
+
+Most cursors in this theme are original custom artwork created for HrimOS.
+
+Where a custom cursor was incomplete, this theme falls back to a modified
+version of **BreezeX Dark** by ful1e5, licensed under GPL-3.0:
+https://github.com/ful1e5/BreezeX_Cursor
+
+Full license text is included at:
+/usr/share/licenses/hrimos-cursors/LICENSE
+ATTR
+}

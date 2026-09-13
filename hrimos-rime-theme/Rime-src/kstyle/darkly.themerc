@@ -1,0 +1,6 @@
+[Misc]
+Name=Rime
+ConfigPage=kstyle_config/darklystyleconfig
+Comment=Widget style for Qt Applications
+[KDE]
+WidgetStyle=Rime

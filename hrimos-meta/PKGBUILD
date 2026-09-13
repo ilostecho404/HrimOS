@@ -1,0 +1,44 @@
+# Maintainer: ilostecho404 <ilostecho404@users.noreply.github.com>
+pkgname=hrimos-meta
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="HrimOS default look and feel: pulls in all theme components and sets system-wide defaults"
+arch=('any')
+url="https://github.com/ilostecho404/HrimOS"
+license=('custom')
+depends=('hrimos-rime-theme' 'hrimos-icons' 'hrimos-cursors' 'hrimos-branding')
+provides=('eos-settings-plasma')
+conflicts=('eos-settings-plasma')
+replaces=('eos-settings-plasma')
+
+package() {
+    install -d "${pkgdir}/usr/share/plasma/look-and-feel/com.hrimos.rime.desktop/contents"
+    cp -r "${startdir}/lookandfeel/com.hrimos.rime.desktop/." \
+        "${pkgdir}/usr/share/plasma/look-and-feel/com.hrimos.rime.desktop/"
+
+    install -d "${pkgdir}/etc/xdg"
+    cat > "${pkgdir}/etc/xdg/kdeglobals" <<GLOBALS
+[General]
+ColorScheme=Rime
+
+[KDE]
+widgetStyle=Rime
+LookAndFeelPackage=com.hrimos.rime.desktop
+
+[Icons]
+Theme=HrimOS-Niflheim
+GLOBALS
+
+    cat > "${pkgdir}/etc/xdg/kwinrc" <<KWIN
+[org.kde.kdecoration2]
+library=org.kde.darkly
+theme=Rime
+BorderSize=Large
+BorderSizeAuto=false
+KWIN
+
+    cat > "${pkgdir}/etc/xdg/kcminputrc" <<MOUSE
+[Mouse]
+cursorTheme=Hrim-Crystalline-Frostbite
+MOUSE
+}

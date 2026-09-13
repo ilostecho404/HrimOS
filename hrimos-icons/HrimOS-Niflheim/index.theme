@@ -1,0 +1,19 @@
+[Icon Theme]
+Name=HrimOS Niflheim
+Comment=Frost-rune folder icons for the HrimOS Niflheim theme (inherits Breeze Dark for everything else)
+Inherits=breeze-dark,breeze,hicolor
+Directories=scalable/places,scalable/mimetypes
+
+[scalable/places]
+Size=48
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=Places
+
+[scalable/mimetypes]
+Size=48
+MinSize=8
+MaxSize=512
+Type=Scalable
+Context=MimeTypes
